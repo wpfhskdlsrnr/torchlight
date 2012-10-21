@@ -1,6 +1,6 @@
 
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,21 +15,21 @@ public class TorchLightLevelBuilder : MonoBehaviour
     static GameObject GetCachedGameObject(string FbxPath, TorchLightLevel.LevelItem AItem)
     {
         GameObject Obj = null;
-        if (PrefabsCache.ContainsKey(FbxPath))
-        {
-            Obj = PrefabsCache[FbxPath];
-        }
-        else
-        {
-            GameObject ObjToPrefab = AssetDatabase.LoadAssetAtPath(FbxPath, typeof(GameObject)) as GameObject;
-            if (ObjToPrefab != null)
-            {
-                Obj = ObjToPrefab;
-                PrefabsCache.Add(FbxPath, Obj);
-            }
-            else
-                Debug.LogError(FbxPath + "  Not Found");
-        }
+        //if (PrefabsCache.ContainsKey(FbxPath))
+        //{
+        //    Obj = PrefabsCache[FbxPath];
+        //}
+        //else
+        //{
+        //    GameObject ObjToPrefab = AssetDatabase.LoadAssetAtPath(FbxPath, typeof(GameObject)) as GameObject;
+        //    if (ObjToPrefab != null)
+        //    {
+        //        Obj = ObjToPrefab;
+        //        PrefabsCache.Add(FbxPath, Obj);
+        //    }
+        //    else
+        //        Debug.LogError(FbxPath + "  Not Found");
+        //}
 
         return Obj;
     }
@@ -37,22 +37,22 @@ public class TorchLightLevelBuilder : MonoBehaviour
     static Mesh GetCachedCollisionMesh(string ConllisionMeshFile, TorchLightLevel.LevelItem AItem)
     {
         Mesh CollisionMesh = null;
-        if (CollisionMeshCache.ContainsKey(ConllisionMeshFile))
-            CollisionMesh = CollisionMeshCache[ConllisionMeshFile];
-        else
-        {
-            GameObject ObjToPrefab = AssetDatabase.LoadAssetAtPath(ConllisionMeshFile, typeof(GameObject)) as GameObject;
-            if (ObjToPrefab != null)
-            {
-                ObjToPrefab = Instantiate(ObjToPrefab) as GameObject;
+        //if (CollisionMeshCache.ContainsKey(ConllisionMeshFile))
+        //    CollisionMesh = CollisionMeshCache[ConllisionMeshFile];
+        //else
+        //{
+        //    GameObject ObjToPrefab = AssetDatabase.LoadAssetAtPath(ConllisionMeshFile, typeof(GameObject)) as GameObject;
+        //    if (ObjToPrefab != null)
+        //    {
+        //        ObjToPrefab = Instantiate(ObjToPrefab) as GameObject;
 
-                MeshFilter Mesher = ObjToPrefab.GetComponentInChildren<MeshFilter>();
-                CollisionMesh = Mesher.sharedMesh != null ? Mesher.sharedMesh : Mesher.mesh;
+        //        MeshFilter Mesher = ObjToPrefab.GetComponentInChildren<MeshFilter>();
+        //        CollisionMesh = Mesher.sharedMesh != null ? Mesher.sharedMesh : Mesher.mesh;
 
-                CollisionMeshCache.Add(ConllisionMeshFile, CollisionMesh);
-                DestroyImmediate(ObjToPrefab);
-            }
-        }
+        //        CollisionMeshCache.Add(ConllisionMeshFile, CollisionMesh);
+        //        DestroyImmediate(ObjToPrefab);
+        //    }
+        //}
 
         return CollisionMesh;
     }
